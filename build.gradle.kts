@@ -64,10 +64,16 @@ sourceSets {
 	getByName("main").java.srcDirs("$buildDir/generated")
 }
 
+tasks.named<KotlinCompile>("compileKotlin") {
+	dependsOn("graphqlCodegen")
+}
+
+/*
 // Add generated sources to your project source sets:
 tasks.named<JavaCompile>("compileJava") {
 	dependsOn("graphqlCodegen")
 }
+*/
 
 tasks.named<io.github.kobylynskyi.graphql.codegen.gradle.GraphQLCodegenGradleTask>("graphqlCodegen") {
 	outputDir = File("$buildDir/generated")
