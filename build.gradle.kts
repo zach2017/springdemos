@@ -33,6 +33,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+	implementation("javax.validation:validation-api:2.0.1.Final")
+
 	//implementation("io.github.kobylynskyi.graphql.codegen:graphql-codegen-gradle-plugin")
 	implementation ("com.graphql-java-kickstart:graphql-spring-boot-starter:11.0.0")
 	implementation ("com.graphql-java-kickstart:graphiql-spring-boot-starter:11.0.0")
@@ -69,4 +71,12 @@ tasks.named<JavaCompile>("compileJava") {
 
 tasks.named<io.github.kobylynskyi.graphql.codegen.gradle.GraphQLCodegenGradleTask>("graphqlCodegen") {
 	outputDir = File("$buildDir/generated")
+	apiPackageName = "zac.graphql.api"
+	//modelPackageName = "zac.graphql.model"
+	parentInterfaces {
+		queryResolver = "graphql.kickstart.tools.GraphQLQueryResolver"
+		mutationResolver = "graphql.kickstart.tools.GraphQLMutationResolver"
+		subscriptionResolver = "graphql.kickstart.tools.GraphQLSubscriptionResolver"
+		resolver = "graphql.kickstart.tools.GraphQLResolver<{{TYPE}}>"
+	}
 }
