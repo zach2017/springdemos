@@ -1,0 +1,61 @@
+xApplication: xApplication
+
+sprint:
+  application:
+    name: DEMOGRAPHQL
+
+    web:
+      resources:
+        cache:
+          cachecontrol:
+            no-cache: true
+    output:
+      ansi:
+        enabled: always
+    servlet:
+      multipart:
+        max-file-size: 1MB
+        max-request-size: 1MB
+
+graphql:
+  servlet:
+    mapping: graphql
+    enabled: true
+    subscriptions:
+      websockets:
+        path: /ws/
+      actuator-metrics: true
+      cors-enabled: true
+      expection-handlers-enabled: true
+
+
+management:
+  health:
+    livensstate:
+      enabled: true
+    rediinessstate:
+      enabled: true
+    endpoints:
+      enabled-by-default: true
+      web:
+        exposure:
+          include: "health,info,metrics,prometheus,startup"
+    endpoint:
+      health:
+        show-details: always
+        show-components: always
+        enabled: true
+      info:
+        enabled: true
+      metrics:
+        enabled: true
+      startup:
+        enabled: true
+    info:
+      git:
+        mode: full
+        env:
+          enabled: true
+        defaults:
+          enabled: true
+
