@@ -28,34 +28,11 @@ graphql:
       cors-enabled: true
       expection-handlers-enabled: true
 
-
 management:
-  health:
-    livensstate:
-      enabled: true
-    rediinessstate:
-      enabled: true
-    endpoints:
-      enabled-by-default: true
-      web:
-        exposure:
-          include: "health,info,metrics,prometheus,startup"
-    endpoint:
-      health:
-        show-details: always
-        show-components: always
-        enabled: true
-      info:
-        enabled: true
-      metrics:
-        enabled: true
-      startup:
-        enabled: true
-    info:
-      git:
-        mode: full
-        env:
-          enabled: true
-        defaults:
-          enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+
 
